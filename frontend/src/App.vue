@@ -1,9 +1,10 @@
 <template>
   <router-view />
+  <DebugPanel />
 </template>
 
 <script setup>
-// 使用 Vue Router 来管理页面
+import DebugPanel from './components/DebugPanel.vue'
 </script>
 
 <style>
