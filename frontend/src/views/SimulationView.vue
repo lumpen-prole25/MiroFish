@@ -3,7 +3,8 @@
     <!-- Header -->
     <header class="app-header">
       <div class="header-left">
-        <div class="brand" @click="router.push('/')">MIROFISH</div>
+        <div class="brand" @click="router.push('/')">{{ $t('nav.brand') }}</div>
+        <LangSwitcher />
       </div>
       
       <div class="header-center">
@@ -64,6 +65,7 @@
 </template>
 
 <script setup>
+import LangSwitcher from '../components/LangSwitcher.vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import GraphPanel from '../components/GraphPanel.vue'
