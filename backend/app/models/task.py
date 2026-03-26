@@ -1,6 +1,6 @@
 """
 taskstatus管理
-用于跟踪长time运行的task（如Graph Builder）
+for跟踪长timerunning's task(如Graph Builder)
 """
 
 import uuid
@@ -13,8 +13,8 @@ from dataclasses import dataclass, field
 
 class TaskStatus(str, Enum):
     """taskstatus枚举"""
-    PENDING = "pending"          # Wait for中
-    PROCESSING = "processing"    # Process中
+    PENDING = "pending"          # Wait for
+    PROCESSING = "processing"    # Process
     COMPLETED = "completed"      # completed
     FAILED = "failed"            # failed
 
@@ -35,7 +35,7 @@ class Task:
     progress_detail: Dict = field(default_factory=dict)  # 详细Progress info
     
     def to_dict(self) -> Dict[str, Any]:
-        """Convert为字典"""
+        """Convertdictionary"""
         return {
             "task_id": self.task_id,
             "task_type": self.task_type,
@@ -54,14 +54,14 @@ class Task:
 class TaskManager:
     """
     task管理器
-    thread安全的taskstatus管理
+    thread安全's taskstatus管理
     """
     
     _instance = None
     _lock = threading.Lock()
     
     def __new__(cls):
-        """单例模式"""
+        """单例mode"""
         if cls._instance is None:
             with cls._lock:
                 if cls._instance is None:
@@ -72,7 +72,7 @@ class TaskManager:
     
     def create_task(self, task_type: str, metadata: Optional[Dict] = None) -> str:
         """
-        创建新task
+        create新task
         
         Args:
             task_type: tasktype
@@ -114,7 +114,7 @@ class TaskManager:
         progress_detail: Optional[Dict] = None
     ):
         """
-        更新taskstatus
+        updatetaskstatus
         
         Args:
             task_id: taskID
@@ -162,7 +162,7 @@ class TaskManager:
         )
     
     def list_tasks(self, task_type: Optional[str] = None) -> list:
-        """列出task"""
+        """Listtask"""
         with self._task_lock:
             tasks = list(self._tasks.values())
             if task_type:

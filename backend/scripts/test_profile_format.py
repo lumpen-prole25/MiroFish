@@ -1,8 +1,8 @@
 """
-测试Profileformat生成是否符合OASIS要求
-验证：
-1. Twitter Profile生成CSVformat
-2. Reddit Profile生成JSON详细format
+Test if profile format generation meets OASIS requirements
+Validates:
+1. Twitter Profile generates CSV format
+2. Reddit Profile generates detailed JSON format
 """
 
 import os
@@ -11,19 +11,19 @@ import json
 import csv
 import tempfile
 
-# 添加projectpath
+# Add project path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.services.oasis_profile_generator import OasisProfileGenerator, OasisAgentProfile
 
 
 def test_profile_formats():
-    """测试Profileformat"""
+    """Test profile format"""
     print("=" * 60)
-    print("OASIS Profileformat测试")
+    print("OASIS Profile format test")
     print("=" * 60)
     
-    # Create测试Profiledata
+    # Create test profile data
     test_profiles = [
         OasisAgentProfile(
             user_id=0,
@@ -63,7 +63,7 @@ def test_profile_formats():
     
     generator = OasisProfileGenerator.__new__(OasisProfileGenerator)
     
-    # 使用临时directory
+    # use临timedirectory
     with tempfile.TemporaryDirectory() as temp_dir:
         twitter_path = os.path.join(temp_dir, "twitter_profiles.csv")
         reddit_path = os.path.join(temp_dir, "reddit_profiles.json")
@@ -73,15 +73,15 @@ def test_profile_formats():
         print("-" * 40)
         generator._save_twitter_csv(test_profiles, twitter_path)
         
-        # Read并验证CSV
+        # Read并validateCSV
         with open(twitter_path, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
             rows = list(reader)
             
         print(f"   file: {twitter_path}")
-        print(f"   行数: {len(rows)}")
+        print(f"   行count: {len(rows)}")
         print(f"   表头: {list(rows[0].keys())}")
-        print(f"\n   示例data (第1行):")
+        print(f"\n   示例data (round 1行):")
         for key, value in rows[0].items():
             print(f"     {key}: {value}")
         
@@ -92,21 +92,21 @@ def test_profile_formats():
         if missing:
             print(f"\n   [error] 缺少field: {missing}")
         else:
-            print(f"\n   [通过] 所有必需field都存在")
+            print(f"\n   [through] has必需field都存in ")
         
         # 测试Reddit JSONformat
         print("\n2. 测试Reddit Profile (JSON详细format)")
         print("-" * 40)
         generator._save_reddit_json(test_profiles, reddit_path)
         
-        # Read并验证JSON
+        # Read并validateJSON
         with open(reddit_path, 'r', encoding='utf-8') as f:
             reddit_data = json.load(f)
         
         print(f"   file: {reddit_path}")
-        print(f"   条目数: {len(reddit_data)}")
+        print(f"    items目count: {len(reddit_data)}")
         print(f"   field: {list(reddit_data[0].keys())}")
-        print(f"\n   示例data (第1条):")
+        print(f"\n   示例data (round 1 items):")
         print(json.dumps(reddit_data[0], ensure_ascii=False, indent=4))
         
         # Validate详细formatfield
@@ -117,10 +117,10 @@ def test_profile_formats():
         if missing:
             print(f"\n   [error] 缺少必需field: {missing}")
         else:
-            print(f"\n   [通过] 所有必需field都存在")
+            print(f"\n   [through] has必需field都存in ")
         
         present_optional = set(optional_reddit_fields) & set(reddit_data[0].keys())
-        print(f"   [信息] 可选field: {present_optional}")
+        print(f"   [信息] optionalfield: {present_optional}")
     
     print("\n" + "=" * 60)
     print("测试complete!")
@@ -128,9 +128,9 @@ def test_profile_formats():
 
 
 def show_expected_formats():
-    """显示OASIS期望的format"""
+    """显示OASIS期望's format"""
     print("\n" + "=" * 60)
-    print("OASIS 期望的Profileformat参考")
+    print("OASIS 期望's Profileformat参考")
     print("=" * 60)
     
     print("\n1. Twitter Profile (CSVformat)")

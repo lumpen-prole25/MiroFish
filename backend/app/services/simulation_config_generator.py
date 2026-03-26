@@ -625,7 +625,7 @@ Field descriptions:
         # Ensure min < max
         if agents_per_hour_min >= agents_per_hour_max:
             agents_per_hour_min = max(1, agents_per_hour_max // 2)
-            logger.warning(f"agents_per_hour_min >= max，corrected to {agents_per_hour_min}")
+            logger.warning(f"agents_per_hour_min >= max, corrected to {agents_per_hour_min}")
         
         return TimeSimulationConfig(
             total_simulation_hours=result.get("total_simulation_hours", 72),

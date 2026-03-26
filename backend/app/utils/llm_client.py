@@ -1,6 +1,6 @@
 """
 LLMclient封装
-统一使用OpenAIformatcall
+统oneuseOpenAIformatcall
 """
 
 import json
@@ -40,13 +40,13 @@ class LLMClient:
         response_format: Optional[Dict] = None
     ) -> str:
         """
-        发送聊天request
+        send聊天request
         
         Args:
-            messages: message列表
+            messages: messagelist
             temperature: 温度parameter
-            max_tokens: 最大token数
-            response_format: responseformat（如JSON模式）
+            max_tokens: maxtokencount
+            response_format: responseformat(如JSONmode)
             
         Returns:
             模型responsetext
@@ -63,7 +63,7 @@ class LLMClient:
         
         response = self.client.chat.completions.create(**kwargs)
         content = response.choices[0].message.content
-        # 部分模型（如MiniMax M2.5）会在content中包含<think>思考content，需要移除
+        # partial模型(如MiniMax M2.5)会in contentcontains<think>思考content, 需要移除
         content = re.sub(r'<think>[\s\S]*?</think>', '', content).strip()
         return content
     
@@ -74,15 +74,15 @@ class LLMClient:
         max_tokens: int = 4096
     ) -> Dict[str, Any]:
         """
-        发送聊天request并returnJSON
+        send聊天request并returnJSON
         
         Args:
-            messages: message列表
+            messages: messagelist
             temperature: 温度parameter
-            max_tokens: 最大token数
+            max_tokens: maxtokencount
             
         Returns:
-            解析后的JSONobject
+            parse后's JSONobject
         """
         response = self.chat(
             messages=messages,
@@ -99,5 +99,5 @@ class LLMClient:
         try:
             return json.loads(cleaned_response)
         except json.JSONDecodeError:
-            raise ValueError(f"LLMreturn的JSONformat无效: {cleaned_response}")
+            raise ValueError(f"LLMreturn's JSONformatnone效: {cleaned_response}")
 

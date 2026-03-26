@@ -1,7 +1,7 @@
-"""Zep Graph 分页读取tool。
+"""Zep Graph 分页readtool。
 
-Zep 的 node/edge 列表interface使用 UUID cursor 分页，
-本模块封装自动翻页逻辑（含单页retry），对call方透明地return完整列表。
+Zep 's  node/edge listinterfaceuse UUID cursor 分页, 
+本模块封装自动翻页逻辑(含单页retry), 对call方透明地returncompletelist。
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ def _fetch_page_with_retry(
     page_description: str = "page",
     **kwargs: Any,
 ) -> list[Any]:
-    """单页request，failed时指数退避retry。仅retry网络/IOclass瞬态error。"""
+    """单页request, failedtimeExponential backoffretry。仅retry网络/IOclass瞬态error。"""
     if max_retries < 1:
         raise ValueError("max_retries must be >= 1")
 
@@ -64,7 +64,7 @@ def fetch_all_nodes(
     max_retries: int = _DEFAULT_MAX_RETRIES,
     retry_delay: float = _DEFAULT_RETRY_DELAY,
 ) -> list[Any]:
-    """paginated retrieval ofgraphnode，最多return max_items 条（默认 2000）。每页request自带retry。"""
+    """paginated retrieval ofgraphnode, 最多return max_items  items(default 2000)。每页request自带retry。"""
     all_nodes: list[Any] = []
     cursor: str | None = None
     page_num = 0
@@ -109,7 +109,7 @@ def fetch_all_edges(
     max_retries: int = _DEFAULT_MAX_RETRIES,
     retry_delay: float = _DEFAULT_RETRY_DELAY,
 ) -> list[Any]:
-    """paginated retrieval ofgraph所有edge，return完整列表。每页request自带retry。"""
+    """paginated retrieval ofgraphhasedge, returncompletelist。每页request自带retry。"""
     all_edges: list[Any] = []
     cursor: str | None = None
     page_num = 0

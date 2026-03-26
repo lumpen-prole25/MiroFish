@@ -5,8 +5,8 @@ MiroFish Backend - Flask应用工厂
 import os
 import warnings
 
-# 抑制 multiprocessing resource_tracker 的warning（来自第三方库如 transformers）
-# 需要在所有其他导入之前设置
+# 抑制 multiprocessing resource_tracker 's warning(来自round 三方库such as transformers)
+# 需要in hasits他导入之前setup
 warnings.filterwarnings("ignore", message=".*resource_tracker.*")
 
 from flask import Flask, request
@@ -21,34 +21,34 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
     
-    # SetJSON编码：确保中文直接显示（而不是 \uXXXX format）
-    # Flask >= 2.3 使用 app.json.ensure_ascii，旧version使用 JSON_AS_ASCII configuration
+    # SetJSON编码:ensure文直接显示(而不is  \uXXXX format)
+    # Flask >= 2.3 use app.json.ensure_ascii, 旧versionuse JSON_AS_ASCII configuration
     if hasattr(app, 'json') and hasattr(app.json, 'ensure_ascii'):
         app.json.ensure_ascii = False
     
-    # Set日志
+    # Setlog
     logger = setup_logger('mirofish')
     
-    # 只在 reloader 子process中打印启动信息（避免 debug 模式下打印两次）
+    # onlyin  reloader 子process打印start信息(避免 debug mode下打印two times)
     is_reloader_process = os.environ.get('WERKZEUG_RUN_MAIN') == 'true'
     debug_mode = app.config.get('DEBUG', False)
     should_log_startup = not debug_mode or is_reloader_process
     
     if should_log_startup:
         logger.info("=" * 50)
-        logger.info("MiroFish Backend 启动中...")
+        logger.info("MiroFish Backend Starting...")
         logger.info("=" * 50)
     
-    # 启用CORS
+    # enableCORS
     CORS(app, resources={r"/api/*": {"origins": "*"}})
     
-    # Registersimulationprocess清理function（确保server关闭时终止所有simulationprocess）
+    # Registersimulationprocesscleanupfunction(ensureserverclosetime终止hassimulationprocess)
     from .services.simulation_runner import SimulationRunner
     SimulationRunner.register_cleanup()
     if should_log_startup:
         logger.info("Registered simulation process cleanup function")
     
-    # request日志中间件
+    # requestlog间件
     @app.before_request
     def log_request():
         logger = get_logger('mirofish.request')
@@ -69,13 +69,13 @@ def create_app(config_class=Config):
     app.register_blueprint(report_bp, url_prefix='/api/report')
     app.register_blueprint(debug_bp, url_prefix='/api/debug')
     
-    # 健康检查
+    # Health check
     @app.route('/health')
     def health():
         return {'status': 'ok', 'service': 'MiroFish Backend'}
     
     if should_log_startup:
-        logger.info("MiroFish Backend 启动complete")
+        logger.info("MiroFish Backend startcomplete")
     
     return app
 
