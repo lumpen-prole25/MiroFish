@@ -58,7 +58,7 @@
                       <path d="M12 2a10 10 0 0 1 10 10" stroke-width="4" stroke="#4B5563" stroke-linecap="round"></path>
                     </svg>
                   </div>
-                  <span class="loading-text">正在生成{{ section.title }}...</span>
+                  <span class="loading-text">Generating {{ section.title }}...</span>
                 </div>
               </div>
             </div>
@@ -141,7 +141,7 @@
                 <path d="M9 11l3 3L22 4"></path>
                 <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
               </svg>
-              <span>发送问卷调查到世界中</span>
+              <span>{{ $t('step5.tabSurvey') }}</span>
             </button>
           </div>
         </div>
@@ -155,7 +155,7 @@
               <div class="tools-card-avatar">R</div>
               <div class="tools-card-info">
                 <div class="tools-card-name">Report Agent - Chat</div>
-                <div class="tools-card-subtitle">{{ $t('home.features.report') }}智能体的快速对话版本，可调用 4 种专业工具，拥有Geronimo的完整记忆</div>
+                <div class="tools-card-subtitle">{{ $t('home.features.report') }}{{ $t('step5.reportAgentSubtitle') }}</div>
               </div>
               <button class="tools-card-toggle" @click="showToolsDetail = !showToolsDetail">
                 <svg :class="{ 'is-expanded': showToolsDetail }" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
@@ -172,8 +172,8 @@
                     </svg>
                   </div>
                   <div class="tool-content">
-                    <div class="tool-name">InsightForge 深度归因</div>
-                    <div class="tool-desc">对齐现实世界种子数据与模拟环境状态，结合Global/Local Memory机制，提供跨时空的深度归因分析</div>
+                    <div class="tool-name">{{ $t('step5.toolInsightForgeName') }}</div>
+                    <div class="tool-desc">{{ $t('step5.toolInsightForgeDesc') }}</div>
                   </div>
                 </div>
                 <div class="tool-item tool-blue">
@@ -184,8 +184,8 @@
                     </svg>
                   </div>
                   <div class="tool-content">
-                    <div class="tool-name">PanoramaSearch 全景追踪</div>
-                    <div class="tool-desc">基于图结构的广度遍历算法，重构事件传播路径，捕获全量信息流动的拓扑结构</div>
+                    <div class="tool-name">{{ $t('step5.toolPanoramaSearchName') }}</div>
+                    <div class="tool-desc">{{ $t('step5.toolPanoramaSearchDesc') }}</div>
                   </div>
                 </div>
                 <div class="tool-item tool-orange">
@@ -195,8 +195,8 @@
                     </svg>
                   </div>
                   <div class="tool-content">
-                    <div class="tool-name">QuickSearch 快速检索</div>
-                    <div class="tool-desc">基于 GraphRAG 的即时查询接口，优化索引效率，用于快速提取具体的节点属性与离散事实</div>
+                    <div class="tool-name">{{ $t('step5.toolQuickSearchName') }}</div>
+                    <div class="tool-desc">{{ $t('step5.toolQuickSearchDesc') }}</div>
                   </div>
                 </div>
                 <div class="tool-item tool-green">
@@ -208,8 +208,8 @@
                     </svg>
                   </div>
                   <div class="tool-content">
-                    <div class="tool-name">InterviewSubAgent 虚拟访谈</div>
-                    <div class="tool-desc">自主式访谈，能够并行与模拟世界中个体进行多{{ $t('step2.step03.configRounds') }}对话，采集非结构化的观点数据与心理状态</div>
+                    <div class="tool-name">{{ $t('step5.toolInterviewSubAgentName') }}</div>
+                    <div class="tool-desc">{{ $t('step5.toolInterviewSubAgentDesc').split('multi')[0] }}multi{{ $t('step2.step03.configRounds') }}conversations to collect unstructured opinion data and psychological states</div>
                   </div>
                 </div>
               </div>
@@ -235,7 +235,7 @@
             </div>
             <div v-if="showFullProfile && selectedAgent.bio" class="profile-card-body">
               <div class="profile-card-bio">
-                <div class="profile-card-label">简介</div>
+                <div class="profile-card-label">Bio</div>
                 <p>{{ selectedAgent.bio }}</p>
               </div>
             </div>
@@ -250,7 +250,7 @@
                 </svg>
               </div>
               <p class="empty-text">
-                {{ chatTarget === 'report_agent' ? '与 Report Agent 对话，深入了解报告内容' : '与模拟个体对话，了解他们的观点' }}
+                {{ chatTarget === 'report_agent' ? '{{ $t('step5.chatEmptyReportAgent') }}' : '{{ $t('step5.chatEmptyAgent') }}' }}
               </p>
             </div>
             <div 
@@ -292,7 +292,7 @@
             <textarea 
               v-model="chatInput"
               class="chat-input"
-              placeholder="输入您的问题..."
+              placeholder="{{ $t('step5.chatPlaceholder') }}"
               @keydown.enter.exact.prevent="sendMessage"
               :disabled="isSending || (!selectedAgent && chatTarget === 'agent')"
               rows="1"
@@ -317,8 +317,8 @@
           <div class="survey-setup">
             <div class="setup-section">
               <div class="section-header">
-                <span class="section-title">选择调查对象</span>
-                <span class="selection-count">已选 {{ selectedAgents.size }} / {{ profiles.length }}</span>
+                <span class="section-title">{{ $t('step5.surveySelectTargetTitle') }}</span>
+                <span class="selection-count">Selected {{ selectedAgents.size }} / {{ profiles.length }}</span>
               </div>
               <div class="agents-grid">
                 <label 
@@ -353,12 +353,12 @@
 
             <div class="setup-section">
               <div class="section-header">
-                <span class="section-title">问卷问题</span>
+                <span class="section-title">{{ $t('step5.surveyQuestionsTitle') }}</span>
               </div>
               <textarea 
                 v-model="surveyQuestion"
                 class="survey-input"
-                placeholder="输入您想问所有被选中对象的问题..."
+                placeholder="{{ $t('step5.surveyPlaceholder') || 'Enter question for all selected targets...' }}"
                 rows="3"
               ></textarea>
             </div>
@@ -369,7 +369,7 @@
               @click="submitSurvey"
             >
               <span v-if="isSurveying" class="loading-spinner"></span>
-              <span v-else>发送问卷</span>
+              <span v-else>{{ $t('step5.surveySendBtn') }}</span>
             </button>
           </div>
 
@@ -377,7 +377,7 @@
           <div v-if="surveyResults.length > 0" class="survey-results">
             <div class="results-header">
               <span class="results-title">{{ $t('step5.surveyResultsTitle') }}</span>
-              <span class="results-count">{{ surveyResults.length }} 条回复</span>
+              <span class="results-count">{{ surveyResults.length }}  replies</span>
             </div>
             <div class="results-list">
               <div 
@@ -803,7 +803,7 @@ const submitSurvey = async () => {
   if (selectedAgents.value.size === 0 || !surveyQuestion.value.trim()) return
   
   isSurveying.value = true
-  addLog(`发送问卷给 ${selectedAgents.value.size} 个对象...`)
+  addLog(`{{ $t('step5.surveySendBtn') }}给 ${selectedAgents.value.size}对象...`)
   
   try {
     const interviews = Array.from(selectedAgents.value).map(idx => ({
@@ -857,7 +857,7 @@ const submitSurvey = async () => {
       }
       
       surveyResults.value = surveyResultsList
-      addLog(`收到 ${surveyResults.value.length} 条回复`)
+      addLog(`收到 ${surveyResults.value.length}  replies`)
     } else {
       throw new Error(res.error || '请求失败')
     }
@@ -918,7 +918,7 @@ const loadProfiles = async () => {
     const res = await getSimulationProfilesRealtime(props.simulationId, 'reddit')
     if (res.success && res.data) {
       profiles.value = res.data.profiles || []
-      addLog(`加载了 ${profiles.value.length} 个模拟个体`)
+      addLog(`加载了 ${profiles.value.length}模拟个体`)
     }
   } catch (err) {
     addLog(`加载模拟个体失败: ${err.message}`)
@@ -935,7 +935,7 @@ const handleClickOutside = (e) => {
 
 // Lifecycle
 onMounted(() => {
-  addLog('Step5 深度互动初始化')
+  addLog('Step5 深度互动{{ $t('step2.step01.statusInitializing') || 'Initializing' }}')
   loadReportData()
   loadProfiles()
   document.addEventListener('click', handleClickOutside)

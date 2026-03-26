@@ -685,7 +685,7 @@ watch(() => props.systemLogs?.length, () => {
 })
 
 onMounted(() => {
-  addLog('Step3 模拟运行初始化')
+  addLog('Step3 模拟运行{{ $t('step2.step01.statusInitializing') || 'Initializing' }}')
   if (props.simulationId) {
     doStartSimulation()
   }

@@ -24,13 +24,13 @@
         <div class="panel-header">
           <div class="header-left">
             <span class="header-deco">◆</span>
-            <span class="header-title">实时知识图谱</span>
+            <span class="header-title">{{ $t('process.panel.realtimeKnowledgeGraph') || 'Real-time Knowledge Graph' }}</span>
           </div>
           <div class="header-right">
             <template v-if="graphData">
-              <span class="stat-item">{{ graphData.node_count || graphData.nodes?.length || 0 }} 节点</span>
+              <span class="stat-item">{{ graphData.node_count || graphData.nodes?.length || 0 }} {{ $t('process.graph.nodes') || 'Nodes' }}</span>
               <span class="stat-divider">|</span>
-              <span class="stat-item">{{ graphData.edge_count || graphData.edges?.length || 0 }} 关系</span>
+              <span class="stat-item">{{ graphData.edge_count || graphData.edges?.length || 0 }} {{ $t('process.graph.relations') || 'Relations' }}</span>
               <span class="stat-divider">|</span>
             </template>
             <div class="action-buttons">
@@ -54,7 +54,7 @@
               实时更新中...
             </div>
             
-            <!-- 节点/边详情面板 -->
+            <!-- Node/Edge detail panel -->
             <div v-if="selectedItem" class="detail-panel">
               <div class="detail-panel-header">
                 <span class="detail-title">{{ selectedItem.type === 'node' ? 'Node Details' : 'Relationship' }}</span>
@@ -64,7 +64,7 @@
                 <button class="detail-close" @click="closeDetailPanel">×</button>
               </div>
               
-              <!-- 节点详情 -->
+              <!-- Node details -->
               <div v-if="selectedItem.type === 'node'" class="detail-content">
                 <div class="detail-row">
                   <span class="detail-label">Name:</span>
@@ -105,9 +105,9 @@
                 </div>
               </div>
               
-              <!-- 边详情 -->
+              <!-- Edge details -->
               <div v-else class="detail-content">
-                <!-- 关系展示 -->
+                <!-- {{ $t('process.graph.relations') || 'Relations' }}展示 -->
                 <div class="edge-relation">
                   <span class="edge-source">{{ selectedItem.data.source_name || selectedItem.data.source_node_name }}</span>
                   <span class="edge-arrow">→</span>
@@ -247,7 +247,7 @@
               <div class="detail-section">
                 <div class="detail-label">接口说明</div>
                 <div class="detail-content">
-                  上传文档后，LLM分析文档内容，自动生成适合舆论模拟的本体结构（实体类型 + 关系类型）
+                  上传文档后，LLM分析文档内容，自动生成适合舆论模拟的本体结构（实体类型 + {{ $t('process.graph.relations') || 'Relations' }}类型）
                 </div>
               </div>
               
@@ -457,7 +457,7 @@ const statusText = computed(() => {
   if (currentPhase.value >= 2) return '构建完成'
   if (currentPhase.value === 1) return '图谱构建中'
   if (currentPhase.value === 0) return '本体生成中'
-  return '初始化中'
+  return '{{ $t('step2.step01.statusInitializing') || 'Initializing' }}中'
 })
 
 const entityTypes = computed(() => {
@@ -552,7 +552,7 @@ const getPhaseStatusText = (phase) => {
   return '等待中'
 }
 
-// 初始化 - 处理新建项目或加载已有项目
+// {{ $t('step2.step01.statusInitializing') || 'Initializing' }} - 处理新建项目或加载已有项目
 const initProject = async () => {
   const paramProjectId = route.params.projectId
   
@@ -614,7 +614,7 @@ const handleNewProject = async () => {
     }
   } catch (err) {
     console.error('Handle new project error:', err)
-    error.value = '项目初始化失败: ' + (err.message || '未知错误')
+    error.value = '项目{{ $t('step2.step01.statusInitializing') || 'Initializing' }}失败: ' + (err.message || '未知错误')
   } finally {
     loading.value = false
   }
@@ -1429,7 +1429,7 @@ onUnmounted(() => {
   animation: pulse 1s infinite;
 }
 
-/* 节点/边详情面板 */
+/* Node/Edge detail panel */
 .detail-panel {
   position: absolute;
   top: 16px;
@@ -1545,7 +1545,7 @@ onUnmounted(() => {
   color: #666;
 }
 
-/* 边详情关系展示 */
+/* Edge details关系展示 */
 .edge-relation {
   display: flex;
   align-items: center;
@@ -1817,7 +1817,7 @@ onUnmounted(() => {
   color: #333;
 }
 
-/* 关系列表 */
+/* {{ $t('process.graph.relations') || 'Relations' }}列表 */
 .relation-list {
   font-size: 0.8rem;
 }

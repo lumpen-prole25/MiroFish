@@ -16,7 +16,7 @@
             :class="{ active: viewMode === mode }"
             @click="viewMode = mode"
           >
-            {{ { graph: '图谱', split: '双栏', workbench: '工作台' }[mode] }}
+            {{ { graph: $t('graph.title'), split: 'Split', workbench: 'Workbench' }[mode] }}
           </button>
         </div>
       </div>
@@ -89,7 +89,7 @@ const viewMode = ref('split')
 
 // Data State
 const currentSimulationId = ref(route.params.simulationId)
-// 直接在初始化时从 query 参数获取 maxRounds，确保子组件能立即获取到值
+// 直接在{{ $t('step2.step01.statusInitializing') || 'Initializing' }}时从 query 参数获取 maxRounds，确保子组件能立即获取到值
 const maxRounds = ref(route.query.maxRounds ? parseInt(route.query.maxRounds) : null)
 const minutesPerRound = ref(30) // 默认每轮30分钟
 const projectData = ref(null)
@@ -297,9 +297,9 @@ watch(isSimulating, (newValue) => {
 }, { immediate: true })
 
 onMounted(() => {
-  addLog('SimulationRunView 初始化')
+  addLog('SimulationRunView {{ $t('step2.step01.statusInitializing') || 'Initializing' }}')
   
-  // 记录 maxRounds 配置（值已在初始化时从 query 参数获取）
+  // 记录 maxRounds 配置（值已在{{ $t('step2.step01.statusInitializing') || 'Initializing' }}时从 query 参数获取）
   if (maxRounds.value) {
     addLog(`自定义模拟轮数: ${maxRounds.value}`)
   }

@@ -127,7 +127,7 @@
               <!-- {{ $t('history.modalSimRequirement') }} -->
               <div class="modal-section">
                 <div class="modal-label">{{ $t('history.modalSimRequirement') }}</div>
-                <div class="modal-requirement">{{ selectedProject.simulation_requirement || '无' }}</div>
+                <div class="modal-requirement">{{ selectedProject.simulation_requirement || 'None' }}</div>
               </div>
 
               <!-- 文件列表 -->
@@ -181,7 +181,7 @@
             </div>
             <!-- 不可回放提示 -->
             <div class="modal-playback-hint">
-              <span class="hint-text">Step3「{{ $t('step3.btnGenerateReport') }}」与 Step5「{{ $t('home.features.interaction') }}」需在运行中启动，不支持历史回放</span>
+              <span class="hint-text">Step 3 "Start Simulation" and Step 5 "Deep Interaction" must be launched while running and do not support historical playback</span>
             </div>
           </div>
         </div>
@@ -450,7 +450,7 @@ const loadHistory = async () => {
   }
 }
 
-// 初始化 IntersectionObserver
+// {{ $t('step2.step01.statusInitializing') || 'Initializing' }} IntersectionObserver
 const initObserver = () => {
   if (observer) {
     observer.disconnect()
@@ -543,7 +543,7 @@ onMounted(async () => {
   await nextTick()
   await loadHistory()
   
-  // 等待 DOM 渲染后初始化观察器
+  // 等待 DOM 渲染后{{ $t('step2.step01.statusInitializing') || 'Initializing' }}观察器
   setTimeout(() => {
     initObserver()
   }, 100)

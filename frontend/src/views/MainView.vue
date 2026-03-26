@@ -16,7 +16,7 @@
             :class="{ active: viewMode === mode }"
             @click="viewMode = mode"
           >
-            {{ { graph: '图谱', split: '双栏', workbench: '工作台' }[mode] }}
+            {{ { graph: $t('graph.title'), split: 'Split', workbench: 'Workbench' }[mode] }}
           </button>
         </div>
       </div>

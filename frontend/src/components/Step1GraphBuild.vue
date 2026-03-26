@@ -122,7 +122,7 @@
         <div class="card-content">
           <p class="api-note">POST /api/graph/build</p>
           <p class="description">
-            基于生成的本体，将文档自动分块后调用 Zep 构建知识图谱，提取实体和关系，并形成时序记忆与社区摘要
+            {{ $t('step1.step02.description') }}
           </p>
           
           <!-- Stats Cards -->
@@ -137,7 +137,7 @@
             </div>
             <div class="stat-card">
               <span class="stat-value">{{ graphStats.types }}</span>
-              <span class="stat-label">SCHEMA类型</span>
+              <span class="stat-label">{{ $t('step1.step02.statTypes') || 'SCHEMA Types' }}</span>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@
         
         <div class="card-content">
           <p class="api-note">POST /api/simulation/create</p>
-          <p class="description">{{ $t('history.tooltipGraphBuild') }}{{ $t('common.success') }}，请进入下一步进行模拟{{ $t('history.tooltipEnvSetup') }}</p>
+          <p class="description">Graph construction complete. Please proceed to the next step to set up the simulation environment.</p>
           <button 
             class="action-btn" 
             :disabled="currentPhase < 2 || creatingSimulation"
