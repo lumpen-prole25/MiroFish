@@ -107,7 +107,28 @@
     "entityDetail": "Entity Details",
     "name": "Name",
     "type": "Type",
-    "summary": "Summary"
+    "summary": "Summary",
+    "step01": {
+      "title": "Ontology Generation",
+      "statusCompleted": "Completed",
+      "statusProcessing": "Generating",
+      "statusPending": "Waiting",
+      "description": "The LLM analyzes document content and simulation requirements, extracts real-world seeds, and automatically generates an appropriate ontology structure",
+      "loadingDefault": "Analyzing document..."
+    },
+    "step02": {
+      "title": "GraphRAG Construction",
+      "description": "Based on the generated ontology, documents are automatically chunked and Zep is called to build a knowledge graph",
+      "statNodes": "Entity Nodes",
+      "statEdges": "Relationship Edges",
+      "statTypes": "SCHEMA Types"
+    },
+    "step03": {
+      "title": "Build Complete",
+      "description": "Graph construction is complete. Please proceed to the next step",
+      "btnCreating": "Creating...",
+      "btnEnterEnvSetup": "Enter Environment Setup"
+    }
   },
   "step2": {
     "title": "Environment Setup",
@@ -132,7 +153,66 @@
     "twitter": "Twitter",
     "reddit": "Reddit",
     "startSimulation": "Start Simulation",
-    "regenerate": "Regenerate Config"
+    "regenerate": "Regenerate Config",
+    "step01": {
+      "title": "Simulation Instance Initialization",
+      "description": "Create a new simulation instance and pull the simulation world parameter template"
+    },
+    "step02": {
+      "title": "Generate Agent Personas",
+      "description": "Using contextual information, automatically initializes simulated individuals with unique behaviors and memories",
+      "statCurrentAgents": "Current Agent Count",
+      "statExpectedAgents": "Expected Total Agents",
+      "previewTitle": "Generated Agent Personas",
+      "unknownProfession": "Unknown Profession",
+      "noBio": "No bio available"
+    },
+    "step03": {
+      "title": "Generate Dual-Platform Simulation Config",
+      "description": "LLM intelligently configures world time flow, recommendation algorithms, and agent parameters",
+      "configSimDuration": "Simulation Duration",
+      "configHours": "hours",
+      "configRoundDuration": "Round Duration",
+      "configMinutes": "minutes",
+      "configTotalRounds": "Total Rounds",
+      "configActivePerHour": "Active per Hour",
+      "configPeakHours": "Peak Hours",
+      "configWorkHours": "Work Hours",
+      "agentConfigTitle": "Agent Configuration",
+      "agentActiveHours": "Active Hours",
+      "agentPostsPerHour": "Posts/hr",
+      "agentActivityLevel": "Activity Level",
+      "agentInfluenceWeight": "Influence Weight",
+      "algoConfigTitle": "Recommendation Algorithm Config",
+      "platform1Name": "Platform 1: Square / Feed",
+      "platform2Name": "Platform 2: Topic / Community"
+    },
+    "step04": {
+      "title": "Initial Activation Orchestration",
+      "description": "Automatically generates initial events and trending topics based on narrative direction",
+      "narrativeLabel": "Narrative Direction",
+      "hotTopicsLabel": "Initial Trending Topics",
+      "initialPostsLabel": "Initial Activation Sequence"
+    },
+    "step05": {
+      "title": "Setup Complete",
+      "description": "The simulation environment is ready. Start running the simulation",
+      "btnStartSimulation": "Start Dual-World Parallel Simulation",
+      "btnBack": "Back to Graph Build",
+      "toggleCustom": "Custom",
+      "firstRunWarning": "For first-time runs, it is recommended to reduce simulation rounds for a quick preview"
+    },
+    "modal": {
+      "age": "Apparent Age",
+      "gender": "Apparent Gender",
+      "genderMale": "Male",
+      "genderFemale": "Female",
+      "genderOther": "Other",
+      "country": "Country / Region",
+      "mbti": "Apparent MBTI",
+      "bioLabel": "Persona Bio",
+      "personaLabel": "Detailed Persona Background"
+    }
   },
   "step3": {
     "title": "Simulation in Progress",
@@ -147,7 +227,9 @@
     "complete": "Simulation complete",
     "paused": "Simulation paused",
     "stopSimulation": "Stop Simulation",
-    "generateReport": "Generate Report"
+    "generateReport": "Generate Report",
+    "btnLaunching": "Launching...",
+    "btnGenerateReport": "Start Generating Result Report"
   },
   "step4": {
     "title": "Prediction Report",
@@ -165,7 +247,9 @@
     "chatWithAgent": "Chat with Report Agent",
     "agentLog": "Agent Activity Log",
     "thought": "Thought",
-    "action": "Action"
+    "action": "Action",
+    "loadingSection": "Generating {title}...",
+    "btnEnterInteraction": "Enter Deep Interaction"
   },
   "step5": {
     "title": "Deep Interaction",
@@ -174,10 +258,21 @@
     "reportAgent": "Report Agent",
     "reportAgentDesc": "Quick chat version of the report agent with full memory and 4 professional tools",
     "simulationAgents": "Simulation Agents",
-    "chatPlaceholder": "Type your message...",
+    "chatPlaceholder": "Enter your question...",
     "send": "Send",
     "thinking": "Thinking...",
-    "noMessages": "Start a conversation with the selected agent"
+    "noMessages": "Start a conversation with the selected agent",
+    "tabReportAgent": "Chat with Report Agent",
+    "tabAgentDefault": "Chat with any individual",
+    "dropdownSelectAgent": "Select conversation partner",
+    "tabSurvey": "Send Survey to the World",
+    "reportAgentSubtitle": "Quick chat version of the report agent with full memory and 4 tools",
+    "surveySelectTargetTitle": "Select Survey Targets",
+    "surveySelectAll": "Select All",
+    "surveyClear": "Clear",
+    "surveyQuestionsTitle": "Survey Questions",
+    "surveySendBtn": "Send Survey",
+    "surveyResultsTitle": "Survey Results"
   },
   "history": {
     "title": "Simulation History",
@@ -187,7 +282,20 @@
     "requirement": "Requirement",
     "resume": "Resume",
     "delete": "Delete",
-    "confirmDelete": "Are you sure you want to delete this simulation?"
+    "confirmDelete": "Are you sure you want to delete this simulation?",
+    "sectionTitle": "Simulation Records",
+    "tooltipGraphBuild": "Graph Build",
+    "tooltipEnvSetup": "Environment Setup",
+    "tooltipReport": "Analysis Report",
+    "noFiles": "No files",
+    "loading": "Loading...",
+    "modalSimRequirement": "Simulation Requirement",
+    "modalLinkedFiles": "Linked Files",
+    "modalPlaybackDivider": "Simulation Playback",
+    "btnGraphBuild": "Graph Build",
+    "btnEnvSetup": "Environment Setup",
+    "btnReport": "Analysis Report",
+    "playbackHint": "Step 3 and Step 5 must be launched while running and do not support historical playback"
   },
   "graph": {
     "title": "Graph Relationship Visualization",
@@ -199,7 +307,14 @@
     "created": "Created",
     "properties": "Properties",
     "realTimeUpdate": "Real-time GraphRAG memory updating",
-    "refreshHint": "Some content is still processing, please refresh the graph manually later"
+    "refreshHint": "Some content is still processing, please refresh the graph manually later",
+    "tooltipRefresh": "Refresh Graph",
+    "tooltipMaximize": "Maximize / Restore",
+    "buildingHintSimulating": "GraphRAG memory updating in real time",
+    "buildingHintUpdating": "Updating in real time...",
+    "finishedHint": "Some content is still processing. Please refresh the graph later",
+    "loadingData": "Loading graph data...",
+    "waitingOntology": "Waiting for ontology generation..."
   },
   "debug": {
     "title": "Debug",

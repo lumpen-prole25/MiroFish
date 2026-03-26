@@ -107,7 +107,28 @@
     "entityDetail": "엔티티 상세",
     "name": "이름",
     "type": "유형",
-    "summary": "요약"
+    "summary": "요약",
+    "step01": {
+      "title": "온톨로지 생성",
+      "statusCompleted": "완료",
+      "statusProcessing": "생성 중",
+      "statusPending": "대기",
+      "description": "LLM이 문서 내용과 시뮬레이션 요구사항을 분석하고, 현실 시드를 추출하여 적합한 온톨로지 구조를 자동으로 생성합니다",
+      "loadingDefault": "문서 분석 중..."
+    },
+    "step02": {
+      "title": "GraphRAG 구축",
+      "description": "생성된 온톨로지를 기반으로 문서를 자동으로 청크 단위로 분할하고 Zep을 호출하여 지식 그래프를 구축합니다",
+      "statNodes": "엔티티 노드",
+      "statEdges": "관계 엣지",
+      "statTypes": "스키마 유형"
+    },
+    "step03": {
+      "title": "구축 완료",
+      "description": "그래프 구축이 완료되었습니다. 다음 단계로 이동하세요",
+      "btnCreating": "생성 중...",
+      "btnEnterEnvSetup": "환경 설정으로 이동"
+    }
   },
   "step2": {
     "title": "환경 설정",
@@ -132,7 +153,66 @@
     "twitter": "트위터",
     "reddit": "레딧",
     "startSimulation": "시뮬레이션 시작",
-    "regenerate": "설정 재생성"
+    "regenerate": "설정 재생성",
+    "step01": {
+      "title": "시뮬레이션 인스턴스 초기화",
+      "description": "새 시뮬레이션 인스턴스를 생성하고 시뮬레이션 월드 파라미터 템플릿을 가져옵니다"
+    },
+    "step02": {
+      "title": "에이전트 페르소나 생성",
+      "description": "컨텍스트 정보를 활용하여 고유한 행동과 기억을 가진 시뮬레이션 개체를 자동으로 초기화합니다",
+      "statCurrentAgents": "현재 에이전트 수",
+      "statExpectedAgents": "예상 총 에이전트 수",
+      "previewTitle": "생성된 에이전트 페르소나",
+      "unknownProfession": "직업 미상",
+      "noBio": "소개 없음"
+    },
+    "step03": {
+      "title": "이중 플랫폼 시뮬레이션 설정 생성",
+      "description": "LLM이 월드 시간 흐름, 추천 알고리즘, 에이전트 파라미터를 지능적으로 설정합니다",
+      "configSimDuration": "시뮬레이션 기간",
+      "configHours": "시간",
+      "configRoundDuration": "라운드 시간",
+      "configMinutes": "분",
+      "configTotalRounds": "총 라운드 수",
+      "configActivePerHour": "시간당 활성 수",
+      "configPeakHours": "피크 시간대",
+      "configWorkHours": "근무 시간대",
+      "agentConfigTitle": "에이전트 설정",
+      "agentActiveHours": "활성 시간대",
+      "agentPostsPerHour": "게시/시간",
+      "agentActivityLevel": "활동 수준",
+      "agentInfluenceWeight": "영향력 가중치",
+      "algoConfigTitle": "추천 알고리즘 설정",
+      "platform1Name": "플랫폼 1: 광장 / 피드",
+      "platform2Name": "플랫폼 2: 주제 / 커뮤니티"
+    },
+    "step04": {
+      "title": "초기 활성화 편성",
+      "description": "서사 방향을 기반으로 초기 이벤트와 인기 주제를 자동으로 생성합니다",
+      "narrativeLabel": "서사 유도 방향",
+      "hotTopicsLabel": "초기 인기 주제",
+      "initialPostsLabel": "초기 활성화 시퀀스"
+    },
+    "step05": {
+      "title": "설정 완료",
+      "description": "시뮬레이션 환경이 준비되었습니다. 시뮬레이션을 시작하세요",
+      "btnStartSimulation": "이중 세계 병렬 시뮬레이션 시작",
+      "btnBack": "그래프 구축으로 돌아가기",
+      "toggleCustom": "사용자 정의",
+      "firstRunWarning": "처음 실행 시 빠른 미리보기를 위해 시뮬레이션 라운드를 줄이는 것을 권장합니다"
+    },
+    "modal": {
+      "age": "외형적 연령",
+      "gender": "외형적 성별",
+      "genderMale": "남성",
+      "genderFemale": "여성",
+      "genderOther": "기타",
+      "country": "국가/지역",
+      "mbti": "외형적 MBTI",
+      "bioLabel": "페르소나 소개",
+      "personaLabel": "상세 페르소나 배경"
+    }
   },
   "step3": {
     "title": "시뮬레이션 진행 중",
@@ -147,7 +227,9 @@
     "complete": "시뮬레이션 완료",
     "paused": "시뮬레이션 일시정지",
     "stopSimulation": "시뮬레이션 중지",
-    "generateReport": "리포트 생성"
+    "generateReport": "리포트 생성",
+    "btnLaunching": "시작 중...",
+    "btnGenerateReport": "결과 보고서 생성 시작"
   },
   "step4": {
     "title": "예측 리포트",
@@ -165,7 +247,9 @@
     "chatWithAgent": "리포트 에이전트와 대화",
     "agentLog": "에이전트 활동 로그",
     "thought": "사고",
-    "action": "행동"
+    "action": "행동",
+    "loadingSection": "{title} 생성 중...",
+    "btnEnterInteraction": "심층 인터랙션으로 이동"
   },
   "step5": {
     "title": "심층 인터랙션",
@@ -174,10 +258,21 @@
     "reportAgent": "리포트 에이전트",
     "reportAgentDesc": "전체 기억과 4개 전문 도구를 갖춘 리포트 에이전트의 빠른 대화 버전",
     "simulationAgents": "시뮬레이션 에이전트",
-    "chatPlaceholder": "메시지를 입력하세요...",
+    "chatPlaceholder": "질문을 입력하세요...",
     "send": "전송",
     "thinking": "생각 중...",
-    "noMessages": "선택한 에이전트와 대화를 시작하세요"
+    "noMessages": "선택한 에이전트와 대화를 시작하세요",
+    "tabReportAgent": "Report Agent와 대화",
+    "tabAgentDefault": "세계 속 임의의 개체와 대화",
+    "dropdownSelectAgent": "대화 상대 선택",
+    "tabSurvey": "세계로 설문 발송",
+    "reportAgentSubtitle": "전체 메모리와 4개 도구를 갖춘 보고서 에이전트 빠른 대화 버전",
+    "surveySelectTargetTitle": "조사 대상 선택",
+    "surveySelectAll": "전체 선택",
+    "surveyClear": "초기화",
+    "surveyQuestionsTitle": "설문 문항",
+    "surveySendBtn": "설문 발송",
+    "surveyResultsTitle": "조사 결과"
   },
   "history": {
     "title": "시뮬레이션 히스토리",
@@ -187,7 +282,20 @@
     "requirement": "요구사항",
     "resume": "이어하기",
     "delete": "삭제",
-    "confirmDelete": "이 시뮬레이션을 삭제하시겠습니까?"
+    "confirmDelete": "이 시뮬레이션을 삭제하시겠습니까?",
+    "sectionTitle": "추론 기록",
+    "tooltipGraphBuild": "그래프 구축",
+    "tooltipEnvSetup": "환경 설정",
+    "tooltipReport": "분석 보고서",
+    "noFiles": "파일 없음",
+    "loading": "로딩 중...",
+    "modalSimRequirement": "시뮬레이션 요구사항",
+    "modalLinkedFiles": "연관 파일",
+    "modalPlaybackDivider": "추론 재생",
+    "btnGraphBuild": "그래프 구축",
+    "btnEnvSetup": "환경 설정",
+    "btnReport": "분석 보고서",
+    "playbackHint": "Step3과 Step5는 실행 중에만 시작 가능하며 히스토리 재생을 지원하지 않습니다"
   },
   "graph": {
     "title": "그래프 관계 시각화",
@@ -199,7 +307,14 @@
     "created": "생성일",
     "properties": "속성",
     "realTimeUpdate": "실시간 GraphRAG 메모리 업데이트 중",
-    "refreshHint": "일부 콘텐츠가 아직 처리 중입니다. 나중에 그래프를 수동으로 새로고침해주세요"
+    "refreshHint": "일부 콘텐츠가 아직 처리 중입니다. 나중에 그래프를 수동으로 새로고침해주세요",
+    "tooltipRefresh": "그래프 새로고침",
+    "tooltipMaximize": "최대화 / 복원",
+    "buildingHintSimulating": "GraphRAG 메모리 실시간 업데이트 중",
+    "buildingHintUpdating": "실시간 업데이트 중...",
+    "finishedHint": "아직 처리 중인 콘텐츠가 있습니다. 잠시 후 그래프를 새로고침해주세요",
+    "loadingData": "그래프 데이터 로딩 중...",
+    "waitingOntology": "온톨로지 생성 대기 중..."
   },
   "debug": {
     "title": "디버그",
