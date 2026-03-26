@@ -8,7 +8,7 @@
       <!-- 中间步骤指示器 -->
       <div class="nav-center">
         <div class="step-badge">STEP 01</div>
-        <div class="step-name">图谱构建</div>
+        <div class="step-name">{{ $t('history.tooltipGraphBuild') }}</div>
       </div>
 
       <div class="nav-status">

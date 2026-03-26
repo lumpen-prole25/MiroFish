@@ -13,7 +13,7 @@
     <!-- 标题区域 -->
     <div class="section-header">
       <div class="section-line"></div>
-      <span class="section-title">推演记录</span>
+      <span class="section-title">{{ $t('history.sectionTitle') }}</span>
       <div class="section-line"></div>
     </div>
 
@@ -36,16 +36,16 @@
             <span 
               class="status-icon" 
               :class="{ available: project.project_id, unavailable: !project.project_id }"
-              title="图谱构建"
+              title="{{ $t('history.tooltipGraphBuild') }}"
             >◇</span>
             <span 
               class="status-icon available" 
-              title="环境搭建"
+              title="{{ $t('history.tooltipEnvSetup') }}"
             >◈</span>
             <span 
               class="status-icon" 
               :class="{ available: project.report_id, unavailable: !project.report_id }"
-              title="分析报告"
+              title="{{ $t('history.tooltipReport') }}"
             >◆</span>
           </div>
         </div>
@@ -67,20 +67,20 @@
             </div>
             <!-- 如果有更多文件，显示提示 -->
             <div v-if="project.files.length > 3" class="files-more">
-              +{{ project.files.length - 3 }} 个文件
+              +{{ project.files.length - 3 }} {{ $t('history.filesMoreCount') }}
             </div>
           </div>
           <!-- 无文件时的占位 -->
           <div class="files-empty" v-else>
             <span class="empty-file-icon">◇</span>
-            <span class="empty-file-text">暂无文件</span>
+            <span class="empty-file-text">{{ $t('history.noFiles') }}</span>
           </div>
         </div>
 
-        <!-- 卡片标题（使用模拟需求的前20字作为标题） -->
+        <!-- 卡片标题（使用{{ $t('history.modalSimRequirement') }}的前20字作为标题） -->
         <h3 class="card-title">{{ getSimulationTitle(project.simulation_requirement) }}</h3>
 
-        <!-- 卡片描述（模拟需求完整展示） -->
+        <!-- 卡片描述（{{ $t('history.modalSimRequirement') }}完整展示） -->
         <p class="card-desc">{{ truncateText(project.simulation_requirement, 55) }}</p>
 
         <!-- 卡片底部 -->
@@ -102,7 +102,7 @@
     <!-- 加载状态 -->
     <div v-if="loading" class="loading-state">
       <span class="loading-spinner"></span>
-      <span class="loading-text">加载中...</span>
+      <span class="loading-text">{{ $t('history.loading') }}</span>
     </div>
 
     <!-- 历史回放详情弹窗 -->
@@ -124,29 +124,29 @@
 
             <!-- 弹窗内容 -->
             <div class="modal-body">
-              <!-- 模拟需求 -->
+              <!-- {{ $t('history.modalSimRequirement') }} -->
               <div class="modal-section">
-                <div class="modal-label">模拟需求</div>
+                <div class="modal-label">{{ $t('history.modalSimRequirement') }}</div>
                 <div class="modal-requirement">{{ selectedProject.simulation_requirement || '无' }}</div>
               </div>
 
               <!-- 文件列表 -->
               <div class="modal-section">
-                <div class="modal-label">关联文件</div>
+                <div class="modal-label">{{ $t('history.modalLinkedFiles') }}</div>
                 <div class="modal-files" v-if="selectedProject.files && selectedProject.files.length > 0">
                   <div v-for="(file, index) in selectedProject.files" :key="index" class="modal-file-item">
                     <span class="file-tag" :class="getFileType(file.filename)">{{ getFileTypeLabel(file.filename) }}</span>
                     <span class="modal-file-name">{{ file.filename }}</span>
                   </div>
                 </div>
-                <div class="modal-empty" v-else>暂无关联文件</div>
+                <div class="modal-empty" v-else>{{ $t('history.modalNoLinkedFiles') }}</div>
               </div>
             </div>
 
-            <!-- 推演回放分割线 -->
+            <!-- {{ $t('history.modalPlaybackDivider') }}分割线 -->
             <div class="modal-divider">
               <span class="divider-line"></span>
-              <span class="divider-text">推演回放</span>
+              <span class="divider-text">{{ $t('history.modalPlaybackDivider') }}</span>
               <span class="divider-line"></span>
             </div>
 
@@ -159,7 +159,7 @@
               >
                 <span class="btn-step">Step1</span>
                 <span class="btn-icon">◇</span>
-                <span class="btn-text">图谱构建</span>
+                <span class="btn-text">{{ $t('history.tooltipGraphBuild') }}</span>
               </button>
               <button 
                 class="modal-btn btn-simulation" 
@@ -167,7 +167,7 @@
               >
                 <span class="btn-step">Step2</span>
                 <span class="btn-icon">◈</span>
-                <span class="btn-text">环境搭建</span>
+                <span class="btn-text">{{ $t('history.tooltipEnvSetup') }}</span>
               </button>
               <button 
                 class="modal-btn btn-report" 
@@ -176,12 +176,12 @@
               >
                 <span class="btn-step">Step4</span>
                 <span class="btn-icon">◆</span>
-                <span class="btn-text">分析报告</span>
+                <span class="btn-text">{{ $t('history.tooltipReport') }}</span>
               </button>
             </div>
             <!-- 不可回放提示 -->
             <div class="modal-playback-hint">
-              <span class="hint-text">Step3「开始模拟」与 Step5「深度互动」需在运行中启动，不支持历史回放</span>
+              <span class="hint-text">Step3「{{ $t('step3.btnGenerateReport') }}」与 Step5「{{ $t('home.features.interaction') }}」需在运行中启动，不支持历史回放</span>
             </div>
           </div>
         </div>
